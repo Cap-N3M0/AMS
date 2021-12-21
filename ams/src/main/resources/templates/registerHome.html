@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	<link rel="stylesheet" type="text/css" href="../static/css/home.css" th:href="@{/css/home.css}">
+
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+</head>
+<body>
+
+ <!-- Header -->
+ <header>
+	<!-- Wrapper Large screen -->
+	<div class="wrapper-lg header">
+		
+		<!-- toggle  and hamburger icon-->
+		<a class="backButton" th:href="@{/home}">
+			<div class="spinner top"></div>
+			<div class="spinner middle"></div>
+			<div class="spinner bottom"></div>
+		</a>
+
+		<!-- Heading -->
+		<div class="heading"><h3>Company Header</h3></div>
+
+		<!-- Navbar Menu -->
+		<nav class="navbar">
+		<ul>
+			<li><a>Home</a></li>
+			<li><a>About Us</a></li>
+			<li><a>Contact Us</a></li>
+		</ul>
+		</nav>    
+	</div>
+
+	<!-- Wrapper for Small Screen -->
+	<div class="wrapper-sm header">
+		<label class="backButton">
+			<div class="spinner top"></div>
+			<div class="spinner middle"></div>
+			<div class="spinner bottom"></div>
+		</label>
+
+		<!-- Heading -->
+		<div class="heading"><h3>Company Header</h3></div>
+
+		<!-- hidden Toggle for sidebar Menu -->
+		<input type="checkbox" id="sidebarMenuToggle" hidden />
+
+		<!-- toggle  and hamburger icon-->
+		<label for ="sidebarMenuToggle" class="hamburger">
+			<div class="spinner top"></div>
+			<div class="spinner middle"></div>
+			<div class="spinner bottom"></div>
+		</label>
+
+		<!-- SideBar Menu -->
+		<div id="sidebarMenu" >
+
+			<!-- Navbar Menu -->
+			<nav>
+				<ul>
+					<li><a>Home</a></li>
+					<li><a>About Us</a></li>
+					<li><a>Contact Us</a></li>
+				</ul>
+				</nav>  
+		</div>
+	</div>
+	
+</header>
+<!-- Header Finish -->
+
+
+ <!-- Right Container -->
+ <div class="container" style="padding:3rem;">
+	<!-- Form for Login and SignUp -->
+	<form  method="POST" action ="#" th:model="user">
+		<!-- form begin -->
+		<div class="form-section">
+			<!-- username -->
+			<div class="field">
+				<input type="text" name="u_id" id="u_id" placeholder="User ID" th:field = "*{user.u_id}" disabled>
+				<label for="u_id">User ID</label>
+			</div>
+			<!-- firstName -->
+			<div class="field">
+				<input type="text" name="firstName" id="firstName" placeholder="John" th:field = "*{user.firstName} " >
+				<label for="firstName">First Name</label>
+			</div>
+			<!-- lastName -->
+			<div class="field">
+				<input type="text" name="lastName" id="lastName" placeholder="Doe" th:field = "*{user.lastName} " >
+				<label for="lastName">Last Name</label>
+			</div>
+			<!-- email -->
+			<div class="field">
+				<input type="email" name="email" id="email" placeholder="John@doe.com" th:field = "*{user.email} " >
+				<label for="email">Email</label>
+			</div>
+			<!-- password -->
+			<div class="field">
+				<input type="password" name="password" id="password" placeholder="JohnD*****" th:field = "*{user.password}" >
+				<label for="password">Password</label>
+			</div>
+			<!-- confirmPassword -->
+			<div class="field">
+				<input type="password" name="confirmPassword" id="confirmPassword" placeholder="JohnD*****" >
+				<label for="confirmPassword">Confirm Password</label>
+			</div>
+			
+
+			<!-- button for submit form -->
+			<button type="submit" id="Register" th:formaction="@{createUser}">Register</button>
+		</div>
+	</form>
+	<!-- form ends -->
+</div>
+<!-- right container end -->
+
+
+
+
+
+<!-- 
+<div class="container">
+	<span th:text="${user}"></span>
+	<br>
+	<br><br>
+
+	<h4> Registration Page </h4>
+
+
+	
+	<table th:model="user" cellpadding = "5" cellspacing = "5">
+		<tr>
+			<td><label for="u_id">User ID:</label></td>
+			<td><input type="text" name="u_id" id="u_id" th:field = "*{user.u_id} disable" ></td>
+		</tr>
+		<tr>
+			<td><label for="firstName">First Name: </label></td>
+			<td><input type="text" name ="firstName" id="firstName"></td>
+		</tr>
+		<tr>
+			<td><label for="lastName">Last Name: </label></td>
+			<td><input type="text" name ="lastName" id="lastName"></td>
+		</tr>
+		<tr>
+			<td><label for="email">Email: </label></td>
+			<td><input type="email" name ="email" id="email"></td>
+		</tr>
+		<tr>
+			<td><label for="password">Password: </label></td>
+			<td><input type="password" name ="password" id="password"></td>
+		</tr>
+		<tr>
+			<td><label for="password">Confirm Password: </label></td>
+			<td><input type="password" id="confirm_password"></td>
+		</tr>
+	</table>
+</div> -->
+ 
+
+</body>
+</html>

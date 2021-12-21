@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>USER HOME</title>
+
+<link rel="stylesheet" type="text/css" href="../static/css/userHome.css" th:href="@{/css/userHome.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+<!-- <h2 th:if="${user!=null}" th:text=${user}></h2>
+<h1 > Welcome <span th:if="${message != null}" th:text="${message}"></span]></h1> -->
+
+   <!-- Header -->
+   
+   <header>
+    <!-- Wrapper Large screen -->
+    <div class="wrapper-lg header">
+        
+        <!-- Heading -->
+        <div class="heading"><h5>Welcome <span th:if="${user!=null}" th:text="${user.firstName}"></span></h3></div>
+
+        <!-- Navbar Menu -->
+        <nav class="navbar">
+        <ul>
+            <li><a>Home</a></li>
+            <li><a>About Us</a></li>
+            <li><a>Contact Us</a></li>
+        </ul>
+        </nav>    
+    </div>
+
+    <!-- Wrapper for Small Screen -->
+    <div class="wrapper-sm header">
+        
+        <!-- Heading -->
+        <div class="heading"><h3>Company Header</h3></div>
+
+        <!-- hidden Toggle for sidebar Menu -->
+        <input type="checkbox" id="sidebarMenuToggle" hidden />
+
+        <!-- toggle  and hamburger icon-->
+        <label for ="sidebarMenuToggle" class="hamburger">
+            <div class="spinner top"></div>
+            <div class="spinner middle"></div>
+            <div class="spinner bottom"></div>
+        </label>
+
+        <!-- SideBar Menu -->
+        <div id="sidebarMenu" >
+
+            <!-- Navbar Menu -->
+            <nav>
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a>About Us</a></li>
+                    <li><a>Contact Us</a></li>
+                </ul>
+                </nav>  
+        </div>
+    </div>
+    
+</header>
+<!-- Header Finish -->
+
+<nav> 
+    <ul>
+    	<li><a id="id" th:href="@{/userHome/profile}">Profile</a></li>
+    	<li><a th:href="@{/logout}">SignOut</a></li>
+    </ul>
+ 
+</nav>
+<label for="addPost" style:"float:right;"> + </label>
+    <input type="checkbox" id = "addPost" hidden>
+<!-- 
+<form id="post_template" th:action="@{post/addPost(id=${user.u_id})}" th:object="${post}" method="POST"> 
+	<input type="text" th:field="*{title}">
+    <textarea th:field="*{content}"></textarea>
+	
+    <button type="submit">Add Post</button>
+    <button type="reset">Cancel</button>
+
+</form>
+-->
+	<div id="userId" th:text="${user.u_id}"> </div> 
+	<input id="title" type="text">
+    <textarea  id="content"></textarea>
+    
+    <button id="bwSubmit" type="button">Add Post</button>
+    <button id="bwReset" type="button">Cancel</button>
+
+<div class="postList_wrapper" th:if="${postList!=null}">
+	<div class="post_wrapper" th:each="post:${postList}">
+		<a class="title" th:text="${post.title}" th:href="@{/post(postId=${post.postId})}"> Title</a>
+	    <div class="content" th:text="${post.content}">Content</div>    
+	</div>  
+</div>
+
+<div id="err"></div>
+
+
+</body>
+
+    <script src="../js/userHome.js"></script>
+
+</html>

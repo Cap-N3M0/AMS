@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+</head>
+<body>
+
+<form th:action="@{/userHome/userProfile/updateUser}" th:object"user" method="POST">
+<input type="text" id="u_id" th:field="*{user.u_id}" th:value="${user.u_id}" hidden> <br><br>
+FirstName: <input type="text" id="firstName" th:field="*{user.firstName}" th:value="${user.firstName}"> <br><br>
+LastName: <input type="text" id="lastName" th:field="*{user.lastName}" th:value="${user.lastName}"> <br><br>
+Email: <input type="email" id="email" th:field="*{user.email}" th:value=${user.email}> <br><br>
+Password: <input type="password" id="password" th:field="*{user.password}"> <br><br>
+
+Profile: <select th:field="*{user.profile_code}" >
+			<option value="">Choose Option...</option>
+			<option th:each="profile:${listProfiles}" th:value="${profile.profile_code}" th:text = "${profile.profile}"></option>
+		</select>
+		
+		<br><br>
+
+<button type='submit'>Update</button>
+
+</form>
+
+</body>
+</html>

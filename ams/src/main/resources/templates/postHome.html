@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>BlogPost</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div th:text="${post.title}">	</div>
+<div th:text="${post.content}">	</div>
+
+<!--
+<label for="addComment" style:"float:right;"> + </label>
+    <input type="checkbox" id = "addComment" hidden>
+ 
+<form id="post_template" th:action="@{/addComment(userId=${user.u_id}, postId = ${post.postId})}" th:object="${comment}" method="POST"> 
+    <textarea th:field="*{commentContent}"></textarea>
+	
+    <button type="submit">Add Comment</button>
+    <button type="reset">Cancel</button>
+
+</form>
+-->
+
+	<div id="userId" th:text="${user.u_id}"> </div>
+	<div id="postId" th:text="${post.postId}"> </div>
+	 
+    <textarea  id="commentContent"></textarea>
+    
+    <button id="bwSubmit" type="button">Add Post</button>
+    <button id="bwReset" type="button">Cancel</button>
+
+
+<div th:if="${commentList!=null}">
+<ul th:each="comment:${commentList}">
+<li th:text="${comment.commentContent}">
+</ul>
+</div>
+</body>
+
+    <script src="../js/postHome.js"></script>
+
+</html>

@@ -1,0 +1,421 @@
+
+*{
+    box-sizing: border-box; 
+    overflow-x: hidden;
+    font-family: Avenir Next, Avenir, SegoeUI, sans-serif;
+}
+
+/* hide scrollbar but still scrollable in x directions */
+::-webkit-scrollbar{
+    display: none;
+}
+
+/* removing default 8px padding */
+html,body{
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+.backButton{
+    background: white;
+
+    position: fixed;
+    left:3rem;
+    width:2rem;
+    height: 2rem;
+    padding:2px;
+
+    border-radius: 100%;
+
+    z-index: 20;
+    transition: all 0.2s;
+}
+
+.backButton:hover{
+    box-shadow: 0px 0px 70px 5px black;
+}
+
+.hamburger:hover{
+    box-shadow: 0px 0px 100px 5px black;
+}
+
+.backButton>.top{
+    transform:translateX(-4px) translateY(2px) rotate(-45deg);
+}
+.backButton>.middle{
+  display: none;
+}
+
+.backButton>.bottom{
+    transform:translateX(-4px) translateY(10px) rotate(45deg);
+}
+
+.heading{
+    margin-left: 3rem;
+}
+/* header
+flex - align items in extreme corner */
+.header{    
+    background: rgb(36, 123, 149);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 3rem;
+
+    text-transform: uppercase;
+}
+
+/* hamburger menu icon
+position - fixed to top right 
+and rounded corner*/
+.hamburger{
+    background: white;
+
+    position: fixed;
+    right:3rem;
+    width:2rem;
+    padding:2px;
+
+    border-radius: 10%;
+
+    z-index: 20;
+}
+
+/* hamburger menu spinners 
+all transition takes 0.5 sec */
+.spinner{
+    margin:0.2rem;
+    height: 0.2rem;
+    background-color: black;
+    transition: all 0.5s;
+}
+
+/* Spinning transformation on toggle */
+#sidebarMenuToggle:checked ~ .hamburger>.top{
+    transform:  translateY(0.2rem) rotate(495deg);
+}
+
+#sidebarMenuToggle:checked ~ .hamburger>.bottom{
+    transform:  translateY(-0.2rem) rotate(-495deg);
+}
+#sidebarMenuToggle:checked ~ .hamburger>.middle{
+    display: none;
+}
+
+/* sidebar menu 
+position fixed to right covers full length 
+over container but behind hamburger toggle
+hidden in starting 
+all transition takes 0.5s*/
+#sidebarMenu{
+    background: rgb(211, 47, 74);
+    
+    position: fixed;    top:0;  bottom:0;   right: 0;
+    padding-top: 3rem;    
+
+    z-index: 10;
+
+    transform: translateX(30rem);
+    transition: transform 0.5s ease-in-out;
+}
+
+
+
+/* on clicking the hamburger menu.
+It toggle the checkbox which activates the sidebar menu */
+#sidebarMenuToggle:checked ~ #sidebarMenu{
+    transition: all 500ms ease-in-out;
+    transform: translateX(0rem);
+}
+
+
+/* styling list icons */
+ul>li{
+    padding: 1rem;
+    font-size: 0.7rem;
+    border-bottom: 1px solid black;
+
+    text-transform: uppercase;
+}
+
+ul>li:hover{
+    background: whitesmoke;
+
+    border-radius: 1rem;
+}
+
+/* containers */
+#container1,#container2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:3rem;
+}
+
+/* #errorToggle:checked ~ .error{
+    display :block;
+}
+*/
+
+.error{
+ 
+    position:fixed;
+    top:4rem;
+    padding:0.5rem;
+    height:2rem;
+    width:100%;
+    background: rgba(255, 0, 0, 0.65) ;
+
+}
+
+/* form */
+form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem;
+    box-shadow: 0px 0px 30px 5px black;
+
+    width: 70vh;
+    
+    border-radius: 5%;
+}
+
+/* slider switch */
+.slider{
+    background: white;
+
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    width:3.3rem;
+    
+    border: 3px solid black;
+    border-radius: 1rem;
+}
+
+/* slider switch dot */
+.slider-dot{
+    background: rgb(211, 47, 74);
+
+    height: 1rem;
+    width: 1rem;
+    
+    border-radius: 1rem;
+    
+    transform: translateX(0.1rem);
+    transition: all 0.5s;
+}
+
+/* hide password on register slider */
+#slider-toggle:checked ~ .form-section > .field > input[type="password"]{
+    display: none;
+}
+
+/* moves slider dot in x direction */
+#slider-toggle:checked ~ .slider>.slider-dot{
+    transform: translateX(1.8rem);
+}
+
+/* form sections */
+.form-section{
+    background-color: transparent;
+
+    perspective: 1000px; 
+
+    transition: transform 0.5s;
+}
+
+/* rotate Card on slider */
+#slider-toggle:checked ~ .form-section{
+    transform: rotateY(360deg);
+}
+
+/* register and signup button */
+button{
+    background: rgb(211, 47, 74);
+    
+    height: 2rem;
+    width: 100%;
+
+    border:none; 
+}
+
+/* switch off button acts as sign in */
+#bwSignin{
+  display: inline-block;
+}
+#bwRegister{
+    display: none;
+  }
+
+/* switch on button acts as register */
+#slider-toggle:checked ~ .form-section #bwSignin{
+    display: none;
+}
+
+#slider-toggle:checked ~ .form-section #bwRegister{
+    display: inline-block;
+}
+
+
+/**
+* Make the field a flex-container, reverse the order so label is on top.
+*/ 
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1rem;
+}
+
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+label, input {
+    background: inherit;
+    transition: all 0.2s;
+    touch-action: manipulation;
+}
+
+input {
+  font-size: 1rem;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  cursor: text;
+}
+
+input:focus {
+  outline: 0;
+  border-bottom: 1px solid #666;
+}
+
+label {
+  text-transform: uppercase;
+}
+/**
+* Translate down and scale the label up to cover the placeholder,
+* when following an input (with placeholder-shown support).
+* Also make sure the label is only on one row, at max 2/3rds of the
+* field�to make sure it scales properly and doesn't wrap.
+*/
+input:placeholder-shown + label {
+  cursor: text;
+  transform-origin: left bottom;
+  transform: translate(0, 1rem) scale(1);
+}
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+input::placeholder{
+  opacity: 0;
+  transition: inherit;
+}
+/**
+* Show the placeholder when the input is focused.
+*/
+input:focus::placeholder {
+  opacity: 1;
+}
+/**
+* When the element is focused, remove the label transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the input at all.
+*/
+input:not(:placeholder-shown) + label,
+input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+
+/* footer */
+footer{
+    background: rgb(211, 47, 74);
+    margin:0;
+
+    padding: 2rem;
+    position: relative;
+}
+
+
+/* for small screen */
+@media screen and (max-width:768px){
+    .wrapper-lg{
+        display: none;
+    }
+    .wrapper-sm{
+        display: flex;
+        
+    }
+
+    ul{
+        margin:1rem;
+        padding:1rem;
+        width:13rem;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(0deg, rgba(105,9,121,1) 10%, white 91%);
+        justify-content: space-between;
+        align-items: center;
+        align-content: space-between;
+        height: 100vh;
+    }
+
+    .header{
+        background-color: white;
+    }
+    
+    footer{
+        background-color: rgba(105,9,121,1);
+    }
+
+    
+    
+}
+
+/* for Large Screen */
+@media only screen and (min-width:768px){
+    .wrapper-sm{
+        display: none;
+    }
+
+    .wrapper-lg{
+     display: flex;  
+    }
+
+
+    /* Navbar list */
+    ul{
+        list-style: none;
+        display: flex;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row;
+        background: linear-gradient(0deg, rgba(0,103,179,1) 10%, white 101%);
+        justify-content: space-evenly;
+        align-items: center;
+        height:100%;
+    }
+    .header{
+        background: white;
+    }
+    footer{
+        background: rgb(0, 103, 179);
+    }
+}
